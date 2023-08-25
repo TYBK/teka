@@ -279,7 +279,7 @@
       }
 
       form {
-        padding: 0px;
+        padding: 20px;
         width: 400px;
         text-align: left;
         background: #FFFFFF;
@@ -296,6 +296,10 @@
 
       form > div.submit {
         padding: 20px;
+      }
+
+      .spatial {
+        height: 30px;
       }
 
       label {
@@ -534,21 +538,25 @@
     <section id="final">
       <div class="left">
         <h1>Let's Chat</h1>
-        <p>Always happy to help 🤝</p>
+        <p>Always happy to help 💗</p>
       </div>
       <div class="right">
         <form action="https://formsubmit.co/aetherlands@gmail.com" method="POST" id="contactForm" class="contact-form">
           <div class="input">
-            <label>Your Name</label>
+            <label>Name</label>
             <input type="text" name="name" placeholder="Name" id="nameField">
           </div>
           <div class="input">
-            <label>Your Email</label>
+            <label>Message</label>
+            <input type="text" name="message" placeholder="Message" id="messageField">
+          <div class="input">
+            <label>Email</label>
             <input type="email" name="email" placeholder="Email" id="emailField">
           </div>
           <div class="input">
             <label>Pick A Topic</label>
-            <select id="roleField" name="role">
+            <select id="roleField" name="Role">
+              <option value="General">General</option>
               <option value="Careers">Careers</option>
               <option value="Support">Support</option>
               <option value="Partnerships">Partnerships</option>
@@ -557,6 +565,7 @@
             </select>
           </div>
           <input type="hidden" name="_gotcha" />
+          <div class="spatial"></div>
           <div class="submit">
             <input type="submit" value="Contact">
             <input type="hidden" name="_captcha" value="false">
@@ -585,6 +594,8 @@
     const $nameInput = document.getElementById('nameField');
     const $emailInput = document.getElementById('emailField');
     const $roleInput = document.getElementById('roleField');
+    const $messageInput = document.getElementById('messageField');
+    const $thankYouMessage = document.getElementById('thankYouMessage');
     const $header = document.getElementById("header");
     const $wordmark = document.getElementById("wordmark");
     const $mark = document.getElementById("mark");
@@ -785,7 +796,8 @@
       var name = $nameInput.value;
       var email = $emailInput.value;
       var role = $roleInput.value;
-      if (name == "" || email == "" || role == "") {
+      var message = $messageInput.value;
+      if (name == "" || email == "" || role == "" || message == "") {
         alert("Please fill in all the fields.");
         return false;
       }
@@ -823,7 +835,10 @@
         } else if (invalidParam == "name") {
           $nameInput.focus();
           alertText = "Please enter your name.";
-        }
+        } else if (invalidParam == "message") {
+            $messageInput.focus();
+            alertText = "Please enter a message.";
+          }
 
         if (alertText) {
           setTimeout(function() { 
@@ -831,7 +846,7 @@
           }, 100);
         }
       });
-    }
+    } 
 
     const form = document.getElementById("contactForm");
 
